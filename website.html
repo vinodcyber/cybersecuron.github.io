@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cybersecuron | Certified Freelance VAPT & Cloud Security</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --brand-orange: #FF6B00; 
+            --brand-orange-soft: rgba(255, 107, 0, 0.1);
+            --bg-deep: #05070a;
+            --bg-surface: #0f1117;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(15, 17, 23, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Global Utilities --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .orange { color: var(--brand-orange); }
+        section { padding: 100px 0; }
+
+        /* --- Header: Premium Glassmorphism --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        header .container {
+            height: 80px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+            text-decoration: none; color: var(--text-main);
+        }
+        .logo-box {
+            background: var(--brand-orange); color: white;
+            padding: 6px; border-radius: 10px; display: flex;
+        }
+        nav { display: flex; gap: 32px; align-items: center; }
+        nav a {
+            text-decoration: none; color: var(--text-muted);
+            font-size: 0.9rem; font-weight: 600; transition: 0.3s;
+        }
+        nav a:hover { color: var(--brand-orange); }
+
+        /* --- Hero Section --- */
+        .hero { padding: 180px 0 80px; text-align: center; position: relative; }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.07) 0%, transparent 70%);
+            z-index: -1;
+        }
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(34, 197, 94, 0.1); color: #4ade80;
+            padding: 6px 16px; border-radius: 99px; font-size: 0.8rem;
+            font-weight: 700; border: 1px solid rgba(34, 197, 94, 0.2);
+            margin-bottom: 24px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; }
+
+        /* --- Certifications Bar --- */
+        .certs-container {
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 50px;
+        }
+        .cert-tag {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            padding: 8px 18px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem; color: var(--brand-orange); font-weight: 700;
+        }
+
+        /* --- Service Cards Grid --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 50px; }
+        .card {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            padding: 40px; border-radius: 24px; transition: 0.3s ease;
+        }
+        .card:hover { border-color: var(--brand-orange); transform: translateY(-5px); }
+        .card i { color: var(--brand-orange); margin-bottom: 24px; }
+        .card h3 { font-size: 1.4rem; margin-bottom: 16px; font-weight: 700; }
+        .card p { color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem; }
+        .card ul { list-style: none; color: var(--text-muted); font-size: 0.9rem; }
+        .card li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .card li::before { content: ""; width: 6px; height: 6px; background: var(--brand-orange); border-radius: 50%; }
+
+        /* --- Methodology Section --- */
+        .method-section { background: var(--bg-surface); border-radius: 40px; padding: 80px 0; margin: 60px 0; border: 1px solid var(--border); }
+        .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .tool-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tool-tag { background: var(--bg-deep); padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-family: 'JetBrains Mono'; border: 1px solid var(--border); color: var(--brand-orange); }
+
+        /* --- Contact Form & Footer --- */
+        .contact-box {
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
+            background: var(--bg-surface); padding: 60px; border-radius: 32px; border: 1px solid var(--border);
+        }
+        input, select, textarea {
+            width: 100%; padding: 16px; background: var(--bg-deep); border: 1px solid var(--border);
+            border-radius: 12px; color: white; margin-bottom: 20px; outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: var(--brand-orange); }
+        .btn {
+            background: var(--brand-orange); color: white; padding: 16px 32px;
+            border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .btn:hover { background: #e66000; transform: scale(1.02); }
+
+        footer { background: var(--bg-surface); padding: 80px 0 40px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-links h4 { margin-bottom: 20px; color: var(--brand-orange); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--brand-orange); }
+
+        @media (max-width: 968px) {
+            .method-grid, .contact-box, .footer-grid { grid-template-columns: 1fr; }
+            header nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="#" class="logo">
+            <span class="logo-box"><i data-lucide="shield-check" size="24"></i></span>
+            CYBER<span class="orange">SECURON</span>
+        </a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#methodology">Methodology</a>
+            <a href="#contact" class="btn" style="padding: 10px 20px;">Contact Us</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="status-pill">
+            <i data-lucide="circle-dot" size="14" style="fill:#4ade80"></i>
+            Accepting Overflow & Re-Audit Projects 2026
+        </div>
+        <h1>Offensive Security <br><span class="orange">For Global Enterprise.</span></h1>
+        <p>Cybersecuron is a senior freelance collective specialized in deep-dive VAPT. We provide on-demand resource scaling for teams facing project overflow and secondary re-audits for maximum security verification.</p>
+        
+        <div class="certs-container">
+            <span class="cert-tag">OSCP</span>
+            <span class="cert-tag">CEH</span>
+            <span class="cert-tag">eJPT</span>
+            <span class="cert-tag">CMPEN</span>
+            <span class="cert-tag">CAPENX</span>
+        </div>
+
+        <div style="display: flex; gap: 16px; justify-content: center;">
+            <a href="#contact" class="btn">Start Project Inquiry <i data-lucide="send"></i></a>
+            <a href="#services" class="btn" style="background: transparent; border: 1px solid var(--border);">Explore Services</a>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Specialized VAPT Domains</h2>
+            <p style="color: var(--text-muted);">Senior-level manual exploitation across the entire technology stack.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <i data-lucide="cloud-lightning" size="40"></i>
+                <h3>Cloud Security</h3>
+                <p>Hardening AWS, Azure, and GCP environments against misconfigurations.</p>
+                <ul>
+                    <li>IAM Role Exploitation</li>
+                    <li>S3/Blob Storage Audits</li>
+                    <li>Container & K8s Security</li>
+                    <li>Serverless Function Review</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <i data-lucide="globe" size="40"></i>
+                <h3>Web Application</h3>
+                <p>Advanced testing of complex web platforms and modern APIs.</p>
+                <ul>
+                    <li>OWASP Top 10 Coverage</li>
+                    <li>Complex Business Logic</li>
+                    <li>IDOR & Privilege Escalation</li>
+                    <li>Authentication Bypasses</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i data-lucide="smartphone" size="40"></i>
+                <h3>Mobile Security</h3>
+                <p>Full spectrum VAPT for Android and iOS applications.</p>
+                <ul>
+                    <li>Dynamic Runtime Analysis</li>
+                    <li>Binary Reverse Engineering</li>
+                    <li>Insecure Data Storage</li>
+                    <li>SSL Pinning Bypasses</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i data-lucide="cpu" size="40"></i>
+                <h3>Thick Client VAPT</h3>
+                <p>Desktop and industrial app testing with deep binary analysis.</p>
+                <ul>
+                    <li>Memory Corruption Checks</li>
+                    <li>DLL Hijacking Scenarios</li>
+                    <li>Inter-process Communication</li>
+                    <li>Client-Side Trust Issues</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i data-lucide="network" size="40"></i>
+                <h3>Network VAPT</h3>
+                <p>Internal and external infrastructure security assessments.</p>
+                <ul>
+                    <li>External Perimeter Audits</li>
+                    <li>Lateral Movement Testing</li>
+                    <li>Firewall Rule Verification</li>
+                    <li>Active Directory Audits</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i data-lucide="clipboard-check" size="40"></i>
+                <h3>Expert Reporting</h3>
+                <p>Comprehensive findings with CVSS severity scoring.</p>
+                <ul>
+                    <li>Executive Summaries</li>
+                    <li>Step-by-step PoC Videos</li>
+                    <li>Developer-friendly Fixes</li>
+                    <li>Free Verification Re-test</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="methodology" class="method-section">
+    <div class="container">
+        <div class="method-grid">
+            <div>
+                <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Manual-First <span class="orange">Methodology</span></h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">While we use industry-standard tools, our real value lies in <strong>unique manual testing methods</strong> that find flaws automated scanners never can. We think like hackers to protect your assets.</p>
+                
+                <div class="tool-strip">
+                    <span class="tool-tag">Burp Suite Professional</span>
+                    <span class="tool-tag">Acunetix</span>
+                    <span class="tool-tag">Nessus</span>
+                    <span class="tool-tag">Nmap</span>
+                    <span class="tool-tag">MobSF</span>
+                    <span class="tool-tag">Metasploit</span>
+                </div>
+            </div>
+            
+            <div style="background: var(--bg-deep); padding: 40px; border-radius: 24px; border: 1px solid var(--border);">
+                <div style="display: flex; gap: 15px; margin-bottom: 20px; align-items: center;">
+                    <i data-lucide="bar-chart-3" class="orange"></i>
+                    <h4 style="font-size: 1.2rem;">CVSS 3.1 Scoring</h4>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">Every vulnerability found is rated using the <strong>Common Vulnerability Scoring System</strong> to help you prioritize remediation based on real-world risk.</p>
+                
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: 'JetBrains Mono'; color: var(--brand-orange);">
+                    <span>CRITICAL: 9.0+</span>
+                    <span>HIGH: 7.0+</span>
+                    <span>MED: 4.0+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <div class="contact-box">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Contact the <br><span class="orange">Freelance Collective</span></h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">
+                    We specialize in <strong>Resource Scaling</strong> for companies with project overflow and <strong>Independent Re-Audits</strong> for mission-critical applications.
+                </p>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i data-lucide="mail" class="orange"></i>
+                        <span>contact@cybersecuron.com</span>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <i data-lucide="phone-call" class="orange"></i>
+                        <span>+91-8142966087</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding: 25px; background: rgba(255,107,0,0.05); border-radius: 20px; border-left: 4px solid var(--brand-orange);">
+                    <p style="font-size: 0.85rem; font-style: italic; color: var(--text-muted);">"A senior-level extension of your security team. We clear your backlog and verify your fixes with 100% manual accuracy."</p>
+                </div>
+            </div>
+            
+            <form>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" placeholder="Company Name">
+                </div>
+                <input type="email" placeholder="Work Email" required>
+                <select required>
+                    <option value="" disabled selected>Engagement Type</option>
+                    <option>Company Overflow Support</option>
+                    <option>Secondary Re-Audit & Verification</option>
+                    <option>Standard VAPT Engagement</option>
+                    <option>Cloud/Infra Security Audit</option>
+                </select>
+                <textarea rows="4" placeholder="Briefly describe your requirements..."></textarea>
+                <button type="submit" class="btn" style="width: 100%; justify-content: center;">Send Project Inquiry</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.4rem; margin-bottom: 20px;">
+                    <span class="logo-box"><i data-lucide="shield-check" size="20"></i></span>
+                    CYBER<span class="orange">SECURON</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Senior Freelance Collective providing scaled security audits, resource extension, and manual-first verification.
+                </p>
+            </div>
+            <div class="footer-links">
+                <h4>Domains</h4>
+                <ul>
+                    <li><a href="#services">Cloud Security</a></li>
+                    <li><a href="#services">Web & API VAPT</a></li>
+                    <li><a href="#services">Thick Client</a></li>
+                    <li><a href="#services">Mobile Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Partnership</h4>
+                <ul>
+                    <li><a href="#contact">Overflow Support</a></li>
+                    <li><a href="#contact">Re-Audit Projects</a></li>
+                    <li><a href="#methodology">Our Arsenal</a></li>
+                    <li><a href="#contact">Consultation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 40px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
+            <p>&copy; 2026 CYBERSECURON. Certified Offensive Security Researchers. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
